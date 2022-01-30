@@ -23,10 +23,11 @@ public:
     std::vector<State*> m_States;
     /**Okno gry klasa SFML**/
     sf::RenderWindow* m_Window;
-    /**Klasa Silnika Gry**/
+    /**zmienna rodzaju okna Gry**/
     sf::VideoMode* m_WindowVideoMode;
     /**Zmienna sluzaca do wyciszania lub dzialania dzwieku w grze**/
     bool m_Sound;
+
     std::string filename;
     /**Zmienna m_deltaTime**/
     float m_deltaTime;
@@ -35,10 +36,15 @@ public:
     void UpdateDeltaTime();
     GameEngine();
     ~GameEngine();
+    /** startowanie silnika **/
     void Run();
+    /** obsluga urzadzen wejscia **/
     void Input();
+    /** aktualizacja **/
     void Update();
+    /** rysowanie **/
     void Draw();
+    /** zmiana state gry na stosie **/
     void ChangeState(State* state);
     /**Funkcja push na stos przyjmuje argument dany state gry**/
     void PushState(State* state);

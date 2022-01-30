@@ -16,6 +16,7 @@ struct Colors{
 };
 class Button{
 public:
+    /** Konstruktor przycisku przyjmuje x,y,szerokosc,wysokosc,czcionka,tekst **/
     Button(float x, float y, double width, double height, sf::Font font, std::string text) {
         m_ButtonColors = new Colors;
         m_ButtonColors->pressedColor = sf::Color(20, 20, 20, 200);
@@ -42,6 +43,7 @@ public:
         delete m_ButtonColors;
         m_ButtonColors = nullptr;
     }
+    /** odpowiada za pokazywanie interakcji z przyciskiem **/
     void ButtonInput(sf::Vector2f mousepos) {
         m_ButtonState = BUTTON_IDLE;
         if (m_ButtonShape.getGlobalBounds().contains(mousepos)) {
@@ -51,7 +53,7 @@ public:
             }
         }
     }
-
+    /** aktualizuje stan **/
     bool ButtonUpdate() {
         if (m_ButtonState == BUTTON_IDLE) {
             m_ButtonShape.setFillColor(m_ButtonColors->idleColor);
@@ -67,6 +69,7 @@ public:
         }
         return false;
     }
+    /** rysuje przycisk **/
     void ButtonDraw(GameEngine* enginePtr) {
         enginePtr->m_Window->draw(m_ButtonShape);
         enginePtr->m_Window->draw(m_ButtonText);

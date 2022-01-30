@@ -2,11 +2,12 @@
 // Created by Jakub Stawiarz on 01/12/2021.
 //
 
-#include "../GameEngine/GameEngine.h"
-#include "../GameData/GameStateData.h"
+
 
 #ifndef GRA2D_ENTITY_H
-#define GRA2D_ENTITY_
+#include "../GameEngine/GameEngine.h"
+
+
 class Entity {
 public:
     /**Metoda Wirtualna Input**/

@@ -28,16 +28,24 @@ void GameState::Draw() {
     m_EnginePtr->m_Window->draw(* m_BackgroundGame);
     m_Level_One->Draw(m_EnginePtr->m_Window->getView());
     player->Draw();
-
+    for (int i = 0; i < m_GameItems.size(); i++) {
+        m_GameItems[i]->Draw();
+    }
 
 }
 void GameState::Update() {
    player->Update(m_EnginePtr->m_deltaTime);
+    int checkItems = NO_GATHERED_STATE;
+    for (int i = 0; i < m_GameItems.size(); i++) {
+        checkItems = m_GameItems[i]->ColisionBottlePlayer();
+        if (checkItems == ITEM_GATHERED_STATE) {
+            delete m_GameItems[i];
+            m_GameItems.erase(m_GameItems.begin() + i);
+        }
+    }
    return;
 }
 void GameState::InitData() {
-
-
 
 
     gameStateData = new GameStateData();
@@ -46,7 +54,11 @@ void GameState::InitData() {
     m_BackgroundGame->setTexture(*m_BackgroundTexture);
     m_MenuFont->loadFromFile("./assets/MenuFont.ttf");
     gameStateData->playerSpriteSheet = new sf::Texture;
-    gameStateData->playerSpriteSheet->loadFromFile("./assets/Player.png");
+    gameStateData->playerSpriteSheet->loadFromFile("./assets/playerAsset.png");
+
+
+    gameStateData->ItemTexture = new sf::Texture;
+    gameStateData->ItemTexture->loadFromFile("./assets/Whysky.png");
     m_Level_One = new TileMap(m_EnginePtr);
 InitDataLevel_1();
 
@@ -96,6 +108,14 @@ void GameState::InitDataLevel_1() {
     }
     player->SetPlayerJump(1200.0f*temp_second_Y);
 
+
+
+    Items* Item1 = new Items(gameStateData, m_EnginePtr, ITEM);
+    Item1->InitItem(player);
+    Item1->SetItemPosition(50.0* tempScaleX, 550.0* tempScaleY);
+    Item1->SetItemSize(50.0* tempScaleX, 50.0* tempScaleY);
+    Item1->SetItemScale(0.5* tempScaleX, 0.5* tempScaleY);
+    m_GameItems.push_back(Item1);
 }
 
 

@@ -25,6 +25,7 @@ struct  GameStateData
     /**Wskaznik do muzyki w grze**/
     sf::Music* m_GameMusic;
 
-
+    /**Wskaznik do teksury itemu w grze**/
+    sf::Texture *ItemTexture;
 };
 #endif //GRA2D_GAMESTATEDATA_H

@@ -12,7 +12,8 @@ public:
         Tile() {}
         /**Destruktor **/
         ~Tile() {};
-        /**Funkcja inicjujaca tilemape przyjmuje x szerokosc tilemapy y wysokosc tilemapy  width czyli szerokosc elementu height wysokosc elementu oraz type czyli typ **/
+        /**Funkcja inicjujaca tilemape przyjmuje x szerokosc tilemapy y wysokosc tilemapy
+         czyli szerokosc elementu  wysokosc elementu oraz  typ **/
         void Init(float x, float y, float width, float height, int type);
         /**Funkcja Update**/
         void Update();

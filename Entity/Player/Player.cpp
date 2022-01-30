@@ -2,7 +2,7 @@
 Player::Player(GameEngine* gameEngine, GameStateData* gamedata) {
     this->m_EnginePtr = gameEngine;
     this->m_Gamedata = gamedata;
-    m_PlayerAnimation = new Animation(m_Gamedata->playerSpriteSheet, sf::Vector2u(4, 3), 0.25f);
+   // m_PlayerAnimation = new Animation(m_Gamedata->playerSpriteSheet, sf::Vector2u(1, 1), 0.25f);
 
 }
 Player::~Player() {
@@ -12,11 +12,8 @@ Player::~Player() {
 void Player::InitPlayer(TileMap* tilemap) {
     this->m_Tilemap = tilemap;
     m_Player.setTexture(*m_Gamedata->playerSpriteSheet);
-    m_HitBox.setFillColor(sf::Color::Red);
-    //----------------------------------------------
-    //m_HitBox.setOutlineColor(sf::Color::Red);
-    //m_HitBox.setOutlineThickness(1);
-    //----------------------------------------------
+    m_HitBox.setFillColor(sf::Color::Transparent);
+
     m_PlayerVelocityX = 0.0f;
     m_PlayerVelocityY = 0.0f;
     float tempScaleX = (1.0 * (((m_EnginePtr->m_Window->getSize().x) / 1280.0)));
@@ -45,7 +42,6 @@ void Player::InitPlayer(TileMap* tilemap) {
 
 }
 void Player::SetPlayerSize(float width, float height) {
-    //Pomyslimy nad redukcja pointerow
     m_HitBox.setSize(sf::Vector2f(width, height));
 
 }
@@ -193,8 +189,8 @@ int Player::Update(float dt) {
     if (m_CheckFlip == true) {
         m_Player.setPosition(m_Player.getPosition().x + m_Player.getGlobalBounds().width, m_Player.getPosition().y);
     }
-    m_PlayerAnimation->Update(m_AnimationState, dt);
-    m_Player.setTextureRect(m_PlayerAnimation->TextureRect);
+    //m_PlayerAnimation->Update(m_AnimationState, dt);
+   // m_Player.setTextureRect(m_PlayerAnimation->TextureRect);
 
 
     m_EnginePtr->m_Window->setView(m_PlayerCamera);
