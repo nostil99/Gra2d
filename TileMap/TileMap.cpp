@@ -11,6 +11,7 @@ void TileMap::Init( const int TileLevel) {
     platforma2.loadFromFile("./assets/platforma1.png");
     platforma1.loadFromFile("./assets/platforma2.png");
     platforma3.loadFromFile("./assets/platforma3.png");
+    killPlatform.loadFromFile("./assets/BlackPlatform.png");
 
         InitLevel(m_TileGridLevel1);
 
@@ -30,6 +31,10 @@ void TileMap::Draw(const sf::View& gameView) {
             }
             if (m_layerStatic[i].m_type == PLATFORMA3) {
                 m_EnginePtr->m_Window->draw(m_layerStatic[i].m_vertex, &platforma3);
+            }
+            if (m_layerStatic[i].m_type == KILLPLATFORM) {
+                m_EnginePtr->m_Window->draw(m_layerStatic[i].m_vertex, &killPlatform);
+
             }
 
         }
@@ -54,6 +59,11 @@ void TileMap::InitLevel(int arr[][50]) {
                 m_layerStatic.push_back(temp);
             }
             if (arr[i][j] == PLATFORMA3) {
+                Tile temp;
+                temp.Init(j * temp_width, i * temp_height, temp_width, temp_height, arr[i][j]);
+                m_layerStatic.push_back(temp);
+            }
+            if (arr[i][j] == KILLPLATFORM) {
                 Tile temp;
                 temp.Init(j * temp_width, i * temp_height, temp_width, temp_height, arr[i][j]);
                 m_layerStatic.push_back(temp);

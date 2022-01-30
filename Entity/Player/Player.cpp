@@ -67,7 +67,7 @@ void Player::Input() {
     }
 
 
-    //Do usniecia!!!
+
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::W))
     {
         m_PlayerVelocityY = -(m_PlayerSpeed);
@@ -228,7 +228,7 @@ void Player::ColisionPlayerTilemap() {
                     }
                 }
                     //Left Player Collision
-                else if (playerbounds.left > wallbounds.left &&
+                if (playerbounds.left > wallbounds.left &&
                          playerbounds.left + playerbounds.width > wallbounds.left + wallbounds.width
                          && playerbounds.top < wallbounds.top + wallbounds.height
                          && playerbounds.top + playerbounds.height > wallbounds.top) {
@@ -239,7 +239,7 @@ void Player::ColisionPlayerTilemap() {
                 }
 
                 //Top Player Collision
-            else if ((playerbounds.top > wallbounds.top &&
+            if ((playerbounds.top > wallbounds.top &&
                      playerbounds.top + playerbounds.height > wallbounds.top + wallbounds.height
                      && playerbounds.left<wallbounds.left + wallbounds.width
                      && playerbounds.left + playerbounds.width>wallbounds.left)
@@ -250,8 +250,9 @@ void Player::ColisionPlayerTilemap() {
                 m_PlayerVelocityY = 0.0;
                 m_HitBox.setPosition(playerbounds.left, wallbounds.top + wallbounds.height);
             }
+
                 //Bottom Player Collision
-            else if (playerbounds.top < wallbounds.top &&
+            if (playerbounds.top < wallbounds.top &&
                      playerbounds.top + playerbounds.height < wallbounds.top + wallbounds.height
                      && playerbounds.left<wallbounds.left + wallbounds.width
                      && playerbounds.left + playerbounds.width>wallbounds.left
@@ -263,9 +264,10 @@ void Player::ColisionPlayerTilemap() {
                 m_AnimationState = IDLE_ANIMATION;
                 m_HitBox.setPosition(playerbounds.left, wallbounds.top - playerbounds.height);
             }
-            else{
-                inAir=true;
+            if (m_Tilemap->m_layerStatic[i].m_type == 4) {
+                m_Gamedata->boolLoseGame=true;
             }
+
 
             if(playerbounds.left<10
             ){
@@ -274,7 +276,7 @@ void Player::ColisionPlayerTilemap() {
                 std::cout<<"dziala"<<std::endl;
             }
         }
-        std::cout<< "x  " << m_Player.getPosition().x <<"  y" << m_Player.getPosition().y <<std::endl;
+      //  std::cout<< "x  " << m_Player.getPosition().x <<"  y" << m_Player.getPosition().y <<std::endl;
     }
 
 }

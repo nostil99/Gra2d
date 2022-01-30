@@ -10,7 +10,6 @@ struct  GameStateData
         delete backgroundTexture;
         delete m_BackgroundGame;
         delete playerSpriteSheet;
-        delete blackdirtTexture;
         delete m_GameMusic;
     }
 
@@ -18,13 +17,14 @@ struct  GameStateData
     sf::Texture* backgroundTexture;
     /**Wskaznik do textury gracza**/
     sf::Texture* playerSpriteSheet;
-    /**Wskaznik do textury czarny blok**/
-    sf::Texture* blackdirtTexture;
     /**Wskaznik do sprite background**/
     sf::Sprite* m_BackgroundGame;
     /**Wskaznik do muzyki w grze**/
     sf::Music* m_GameMusic;
-
+    /** zmienna przechowujaca przegrania gry**/
+    bool boolWinGame = false;
+    /** zmienna przechowujaca wygranie gry**/
+    bool boolLoseGame = false;
     /**Wskaznik do teksury itemu w grze**/
     sf::Texture *ItemTexture;
 };

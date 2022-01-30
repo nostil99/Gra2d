@@ -29,7 +29,7 @@ void MenuState::Input()
 void MenuState::Update() {
     if (m_PlayButton->ButtonUpdate()) {
         m_MenuMusic->stop();
-        sf::Time delayTime = sf::seconds(0.1);
+        sf::Time delayTime = sf::seconds(0.3);
         sf::sleep(delayTime);
         m_EnginePtr->PushState(new GameState(m_EnginePtr));
         return;
@@ -43,7 +43,7 @@ void MenuState::Update() {
     if (m_HelpButton->ButtonUpdate()) {
         sf::Time delayTime = sf::seconds(0.1);
         sf::sleep(delayTime);
-        //  m_EnginePtr->ChangeState(new HelpState(m_EnginePtr));
+
 
         return;
     }
